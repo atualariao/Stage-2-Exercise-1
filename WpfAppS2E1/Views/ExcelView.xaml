@@ -1,0 +1,165 @@
+﻿<UserControl x:Class="WpfAppS2E1.View.ExcelView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfAppS2E1.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="620" d:DesignWidth="800">
+
+    <Grid>
+        <StackPanel Margin="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <!--Search-->
+                <TextBlock 
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Text="Search :"
+                    TextAlignment="Center"
+                    FontSize="14"/>
+                <TextBox
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Padding="5"
+                    Text="{Binding SearchInput}"
+                    x:Name="searchTextBox" 
+                     />
+                <!--KeyDown="searchTextBox_KeyDown"-->
+                <Button 
+                    Grid.Column="3"
+                    Grid.Row="0"
+                    Content="Search" 
+                    Margin="5 0 0 0" 
+                    Command="{Binding SearchCommand}"
+                     />
+                <!--Click="btnSearch_Click"-->
+                <!--Filter by name-->
+                <TextBlock
+                    Grid.Row="1"
+                    Text="Filter :"
+                    TextAlignment="Center"
+                    Margin="0 5 0 0"
+                    FontSize="14" />
+                <ComboBox 
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    x:Name="filterRegion"
+                    Focusable="False"
+                    IsEditable="True"
+                    IsReadOnly="True"
+                    Text="--Select Region--"
+                    ItemsSource="{Binding Regions}"
+                    SelectedValue="{Binding Region}"
+                    Margin="0 5 0 0" 
+                     />
+                <!--SelectionChanged="filterRegion_SelectionChanged"-->
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <!--Filter by date-->
+                <TextBlock
+                    Grid.Column="0"
+                    Text="Start date"
+                    TextAlignment="Right"
+                    Margin="0 5 5 0"
+                    FontSize="14" />
+                <DatePicker
+                    SelectedDate="{Binding StartDate}"
+                    Grid.Column="1"
+                    Margin="0 5 0 0"/>
+                <TextBlock
+                    Grid.Column="2"
+                    Text="End date"
+                    TextAlignment="Right"
+                    Margin="0 5 5 0"
+                    FontSize="14" />
+                <DatePicker
+                    SelectedDate="{Binding EndDate}"
+                    Grid.Column="3"
+                    Margin="0 5 0 0"/>
+                <Button 
+                    Grid.Column="4"
+                    Content="Filter by order date" 
+                    Margin="30 5 0 0"
+                    Command="{Binding FilterByDateCommand}"
+                    />
+                <!--Click="filterByDateClick"-->
+            </Grid>
+            <Grid Margin="0 10 0 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <DataGrid 
+                          x:Name="excelDataGrid"
+                          ItemsSource="{Binding ExcelFile}"
+                          ColumnWidth="*"
+                          IsReadOnly="True"
+                          AutoGenerateColumns="True"
+                          CanUserResizeColumns="False"
+                          CanUserResizeRows="False"
+                          CanUserReorderColumns="False"
+                          CanUserSortColumns="False"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Center" 
+                          Width="780" 
+                          Height="400" />
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <ComboBox
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    ItemsSource="{Binding ExcelSheets}"
+                    SelectedValue="{Binding ExcelSheet}"
+                    Focusable="False"
+                    IsEditable="True"
+                    IsReadOnly="True"
+                    Text="--Select Sheet--"
+                     />
+                <!--SelectedValue="{Binding ExcelSheet}"-->
+                <!--SelectionChanged="excelSheet_SelectionChanged"-->
+                <TextBlock
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    TextAlignment="Right"
+                    Text="{Binding TotalRows, StringFormat='Total Rows: {0}'}"
+                    Margin="5 5 0 0"/>
+                <Button 
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    Content="Import Excel" 
+                    Margin="0 5 0 0"
+                    Command="{Binding ImportCommand}"
+                    />
+                <TextBlock
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Margin="5 5 0 0"
+                    Text="{Binding FilePath}"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>
