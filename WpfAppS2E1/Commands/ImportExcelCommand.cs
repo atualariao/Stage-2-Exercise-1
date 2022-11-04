@@ -54,7 +54,7 @@ namespace WpfAppS2E1.Commands
                     }
                 }
                 _excelViewModel.FilePath = ofd.FileName;
-                //readerDLL.excelReader.Parse()
+                //_excelViewModel.FilePath = readerDLL.excelReader.Parse().ToString();
                 dt = tableCollection?[_excelViewModel.ExcelSheet];
                 _excelViewModel.ExcelFile = dt?.DefaultView;
                 _excelViewModel.TotalRows = _excelViewModel.ExcelFile.Count;

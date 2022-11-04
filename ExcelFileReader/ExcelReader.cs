@@ -2,7 +2,7 @@
 {
     public interface IExcelReader
     {
-        //string Parse();
-        void Parse();
+        string Parse();
+        //void Parse(string fileLocation);
     }
 }

@@ -3,7 +3,6 @@ using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.IO;
 using System.Windows;
-using WpfAppS2E1.ViewModels;
 
 namespace WpfAppS2E1
 {

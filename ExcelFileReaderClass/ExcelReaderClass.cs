@@ -5,13 +5,13 @@ namespace ExcelFileReaderClass
     [Export(typeof(IExcelReader))]
     public abstract class ExcelReaderClass : IExcelReader
     {
-        //public string Parse()
-        //{
-        //    return "Excel Parsed";
-        //}
-        public void Parse()
+        public string Parse()
         {
-            return;
+            return "Excel Parsed";
         }
+        //public void Parse(string fileLocation)
+        //{
+        //    return;
+        //}
     }
 }
