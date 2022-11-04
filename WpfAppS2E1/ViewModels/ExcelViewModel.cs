@@ -5,13 +5,17 @@ using System;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using WpfAppS2E1.Commands;
-using WpfAppS2E1.Models;
 using System.Windows;
+using System.ComponentModel.Composition;
+using ExcelFileReader;
+using System.ComponentModel.Composition.Hosting;
+using System.IO;
 
 namespace WpfAppS2E1.ViewModels
 {
     public class ExcelViewModel : ExcelViewModelBase
     {
+        
         private int _totalRows;
         private string _excelSheet = "SalesOrders";
         private string _filePath;
@@ -106,6 +110,7 @@ namespace WpfAppS2E1.ViewModels
             SearchCommand = new SearchExcelCommand(this);
 
             FilterByDateCommand = new FilterByDateCommand(this);
+
         }
 
     }

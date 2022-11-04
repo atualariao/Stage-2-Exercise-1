@@ -17,10 +17,4 @@
     <ProjectReference Include="..\ExcelFileReader\ExcelFileReader.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="ExcelFileReader">
-      <HintPath>..\ExcelFileReader\bin\Debug\net6.0\ExcelFileReader.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>

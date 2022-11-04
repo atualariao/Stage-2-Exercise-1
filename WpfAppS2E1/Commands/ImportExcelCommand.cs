@@ -24,8 +24,8 @@ namespace WpfAppS2E1.Commands
 
         public override void Execute(object? parameter)
         {
-            //DirectoryCatalog catalog = new DirectoryCatalog("");
-            //CompositionContainer container = new CompositionContainer(catalog);
+            //ExcelFileReaderDLL readerDLL = new ExcelFileReaderDLL();
+            //readerDLL.ExcelFileImport("../../Lib");
 
             try
             {
@@ -33,7 +33,6 @@ namespace WpfAppS2E1.Commands
                 ofd.Filter = "Excel Files|*.xls;*.xlsx;";
                 if (ofd.ShowDialog() != null)
                 {
-                    string path = ofd.FileName;
                     Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
                     using (var stream = File.Open(ofd.FileName, FileMode.Open, FileAccess.Read))
                     {
@@ -55,6 +54,7 @@ namespace WpfAppS2E1.Commands
                     }
                 }
                 _excelViewModel.FilePath = ofd.FileName;
+                //readerDLL.excelReader.Parse()
                 dt = tableCollection?[_excelViewModel.ExcelSheet];
                 _excelViewModel.ExcelFile = dt?.DefaultView;
                 _excelViewModel.TotalRows = _excelViewModel.ExcelFile.Count;
