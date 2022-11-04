@@ -8,11 +8,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ExcelDataReader" Version="3.6.0" />
-    <PackageReference Include="ExcelDataReader.DataSet" Version="3.6.0" />
     <PackageReference Include="ReactiveUI" Version="18.3.1" />
     <PackageReference Include="System.ComponentModel.Composition" Version="6.0.0" />
     <PackageReference Include="System.Composition" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ExcelFileReader\ExcelFileReader.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ExcelFileReader">
+      <HintPath>..\ExcelFileReader\bin\Debug\net6.0\ExcelFileReader.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

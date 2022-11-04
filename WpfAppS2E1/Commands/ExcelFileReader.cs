@@ -1,6 +1,7 @@
 ﻿using ExcelDataReader;
 using Microsoft.Win32;
 using System;
+using System.ComponentModel.Composition;
 using System.Data;
 using System.IO;
 using System.Text;
@@ -9,7 +10,8 @@ using WpfAppS2E1.ViewModels;
 
 namespace WpfAppS2E1.Commands
 {
-    public class ImportExcelCommand : CommandBase
+    
+    public class ExcelFileReader
     {
         public DataTable? dt;
         public DataView? dv;
@@ -17,16 +19,14 @@ namespace WpfAppS2E1.Commands
 
         private readonly ExcelViewModel _excelViewModel;
 
-        public ImportExcelCommand(ExcelViewModel excelViewModel)
+        public ExcelFileReader(ExcelViewModel excelViewModel)
         {
             _excelViewModel = excelViewModel;
         }
 
-        public override void Execute(object? parameter)
+        [Export]
+        public void ExcelFileImport()
         {
-            //DirectoryCatalog catalog = new DirectoryCatalog("");
-            //CompositionContainer container = new CompositionContainer(catalog);
-
             try
             {
                 OpenFileDialog ofd = new OpenFileDialog();
@@ -34,6 +34,7 @@ namespace WpfAppS2E1.Commands
                 if (ofd.ShowDialog() != null)
                 {
                     string path = ofd.FileName;
+                    _excelViewModel.FilePath = ofd.FileName;
                     Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
                     using (var stream = File.Open(ofd.FileName, FileMode.Open, FileAccess.Read))
                     {
@@ -54,7 +55,6 @@ namespace WpfAppS2E1.Commands
                         }
                     }
                 }
-                _excelViewModel.FilePath = ofd.FileName;
                 dt = tableCollection?[_excelViewModel.ExcelSheet];
                 _excelViewModel.ExcelFile = dt?.DefaultView;
                 _excelViewModel.TotalRows = _excelViewModel.ExcelFile.Count;
